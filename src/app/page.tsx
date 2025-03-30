@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import * as THREE from "three"; // Required for Vanta.js
-import NET from "vanta/dist/vanta.net.min";
+import RINGS from "vanta/dist/vanta.rings.min";
 
 const cardVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -31,7 +31,8 @@ export default function SecurityAnimation() {
   const vantaRef = useRef(null);
 
   useEffect(() => {
-    const effect = NET({
+    if (!vantaRef.current) return;
+    const effect = RINGS({
       el: vantaRef.current,
       THREE,
       mouseControls: true,
@@ -41,11 +42,8 @@ export default function SecurityAnimation() {
       minWidth: 200.0,
       scale: 1.0,
       scaleMobile: 1.0,
-      color: 0x06b6d4, // Cyan glow
-      backgroundColor: 0x0a0a0a, // Darker black background
-      points: 18, // Denser effect
-      maxDistance: 22, // Smoother mesh
-      spacing: 18, // Balanced spacing for effect
+      backgroundColor: 0x0a0a0a, // Dark background
+      color: 0x8b5cf6, // Use a single color for the rings
     });
 
     return () => effect.destroy(); // Cleanup on unmount
@@ -57,9 +55,7 @@ export default function SecurityAnimation() {
       className="relative w-full min-h-screen flex flex-col items-center py-20"
     >
       <div className="relative z-10 text-center">
-        <Badge className="text-lg bg-indigo-700 text-white">
-          Security Layers
-        </Badge>
+        <Badge className="text-lg bg-indigo-700 text-white">Chain Pack</Badge>
         <h1 className="text-5xl font-extrabold mt-4 bg-gradient-to-r from-cyan-400 to-violet-300 text-transparent bg-clip-text">
           Blockchain Package Protection
         </h1>
@@ -77,7 +73,7 @@ export default function SecurityAnimation() {
             Log In
           </Button>
           <Button className="px-6 py-3 text-lg font-semibold bg-cyan-600 hover:bg-cyan-700">
-            Learn More
+            Register
           </Button>
         </div>
 
@@ -102,6 +98,34 @@ export default function SecurityAnimation() {
             </motion.div>
           ))}
         </div>
+      </div>
+
+      {/* Tech Stack */}
+      <div className="mt-16 text-gray-300 text-center max-w-4xl mx-auto">
+        <h2 className="text-3xl font-bold text-white mb-4">Tech Stack</h2>
+        <p>
+          <strong>Frontend:</strong> Next.js (App Router), ShadCN, TailwindCSS,
+          Framer Motion
+        </p>
+        <p>
+          <strong>Web3 Integration:</strong> Wagmi, ethers.js
+        </p>
+        <p>
+          <strong>Authentication:</strong> NextAuth.js (Web2), SIWE (Web3)
+        </p>
+        <p>
+          <strong>Backend:</strong> Orkes, Node.js, Express.js, Prisma, MongoDB
+        </p>
+        <p>
+          <strong>Smart Contracts:</strong> Solidity (Ethereum/Polygon)
+        </p>
+        <p>
+          <strong>File Storage:</strong> IPFS / Arweave
+        </p>
+        <p>
+          <strong>Microservices:</strong> Package Registry, Crypto Transactions,
+          Decentralized Identity, Package Verification
+        </p>
       </div>
     </div>
   );
