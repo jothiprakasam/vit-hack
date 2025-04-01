@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -29,6 +30,7 @@ const securityFeatures = [
 
 export default function SecurityAnimation() {
   const vantaRef = useRef(null);
+  const router = useRouter(); // Initialize Next.js router
 
   useEffect(() => {
     if (!vantaRef.current) return;
@@ -69,10 +71,16 @@ export default function SecurityAnimation() {
 
         {/* Action Buttons */}
         <div className="mt-6 flex gap-4 justify-center">
-          <Button className="px-6 py-3 text-lg font-semibold bg-indigo-600 hover:bg-indigo-700">
+          <Button
+            onClick={() => router.push("/auth/login")}
+            className="px-6 py-3 text-lg font-semibold bg-indigo-600 hover:bg-indigo-700"
+          >
             Log In
           </Button>
-          <Button className="px-6 py-3 text-lg font-semibold bg-cyan-600 hover:bg-cyan-700">
+          <Button
+            onClick={() => router.push("auth/register")}
+            className="px-6 py-3 text-lg font-semibold bg-cyan-600 hover:bg-cyan-700"
+          >
             Register
           </Button>
         </div>
